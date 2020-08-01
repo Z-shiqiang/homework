@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table align="center">
+
+{% for u in user %}
+    <form action="/updateuser/{{ u.id }}" method="post">
+        {% csrf_token %}
+        <tr>
+            <td>姓名：<input type="text" name="name" value="{{ u.name}}"></td>
+            <td>年龄：<input type="text" name="age" value="{{ u.age }}"></td>
+            <td>专业：<input type="text" name="grade" value="{{ u.grade }}"></td>
+            <td><input type="submit" value="提交"></td>
+        </tr>
+    </form>
+{% endfor %}
+</table>
+
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+</head>
+<style>
+    body{
+        text-align: center;
+    }
+</style>
+<body>
+<table cellspacing="0" border="1px" width="500px" align="center">
+    <tr>
+        <td>姓名</td>
+        <td>年龄</td>
+        <td>专业</td>
+        <td>操作</td>
+    </tr>
+    {% for u in user %}
+        <tr>
+            <td>{{ u.name }}</td>
+            <td>{{ u.age }}</td>
+            <td>{{ u.grade }}</td>
+            <td><a href="/deleteuser/{{ u.name }}">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                    href="/updateuser/{{ u.id }}">更新</a>
+            </td>
+        </tr>
+    {% empty %}
+        <tr>
+            <td colspan="5" style="background-color: #cccccc">暂无数据</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<table align="center">
+
+<form action="/createuser/" method="post">
+    {% csrf_token %}
+<tr>
+    <td>姓名：<input type="text" name="name"></td>
+    <td>年龄：<input type="text" name="age"></td>
+    <td>专业：<input type="text" name="grade"></td>
+    <td><input type="submit" value="提交"></td>
+</tr>
+</form>
+</table>
+</body>
+</html>
